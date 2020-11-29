@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2D00157325731D4C00AD3C65 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D00157225731D4C00AD3C65 /* Extensions.swift */; };
 		2D083BE825730D650083C7F3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D083BE725730D650083C7F3 /* AppDelegate.swift */; };
 		2D083BEA25730D650083C7F3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D083BE925730D650083C7F3 /* SceneDelegate.swift */; };
 		2D083BEC25730D650083C7F3 /* ConversationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D083BEB25730D650083C7F3 /* ConversationsViewController.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2D00157225731D4C00AD3C65 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		2D083BE425730D640083C7F3 /* chat-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "chat-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D083BE725730D650083C7F3 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2D083BE925730D650083C7F3 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,9 +83,8 @@
 		2D083BFD2573148B0083C7F3 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2D083C18257318630083C7F3 /* Login */,
 				2D083BEB25730D650083C7F3 /* ConversationsViewController.swift */,
-				2D083C05257315EB0083C7F3 /* LoginViewController.swift */,
-				2D083C08257315FB0083C7F3 /* RegisterViewController.swift */,
 				2D083C0B257316180083C7F3 /* PhotoViewerViewController.swift */,
 				2D083C0E257316270083C7F3 /* VideoPlayerViewController.swift */,
 				2D083C11257316AE0083C7F3 /* NewConversationViewController.swift */,
@@ -122,6 +123,7 @@
 			children = (
 				2D083BE725730D650083C7F3 /* AppDelegate.swift */,
 				2D083BE925730D650083C7F3 /* SceneDelegate.swift */,
+				2D00157225731D4C00AD3C65 /* Extensions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -131,6 +133,15 @@
 			children = (
 			);
 			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		2D083C18257318630083C7F3 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				2D083C05257315EB0083C7F3 /* LoginViewController.swift */,
+				2D083C08257315FB0083C7F3 /* RegisterViewController.swift */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,6 +219,7 @@
 				2D083C12257316AE0083C7F3 /* NewConversationViewController.swift in Sources */,
 				2D083BEC25730D650083C7F3 /* ConversationsViewController.swift in Sources */,
 				2D083C0F257316270083C7F3 /* VideoPlayerViewController.swift in Sources */,
+				2D00157325731D4C00AD3C65 /* Extensions.swift in Sources */,
 				2D083BE825730D650083C7F3 /* AppDelegate.swift in Sources */,
 				2D083C15257316CF0083C7F3 /* ProfileViewController.swift in Sources */,
 				2D083BEA25730D650083C7F3 /* SceneDelegate.swift in Sources */,
@@ -369,7 +381,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.dabbour.chat-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -389,7 +401,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.example.dabbour.chat-app";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
