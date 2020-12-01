@@ -71,6 +71,7 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    
     //MARK:-Lifehooks
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,6 +128,10 @@ class LoginViewController: UIViewController {
     //MARK:-Methods
     
     @objc private func loginButtonTapped(){
+        //Hide keyboard
+        emailField.resignFirstResponder()
+        passwordField.resignFirstResponder()
+        
         //Validate empty strings
         guard let email = emailField.text,let password = passwordField.text,
               !email.isEmpty,!password.isEmpty,password.count >= 6 else {
