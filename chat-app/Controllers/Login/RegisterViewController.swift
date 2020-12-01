@@ -26,6 +26,10 @@ class RegisterViewController: UIViewController {
         }
         imageView.tintColor = .gray
         imageView.contentMode = .scaleAspectFit
+        //Round image view
+        imageView.layer.masksToBounds = true
+        imageView.layer.borderWidth = 2
+        imageView.layer.borderColor = UIColor.lightGray.cgColor
         return imageView
     }()
     
@@ -124,8 +128,8 @@ class RegisterViewController: UIViewController {
         
         //Attach Events
         registerButton.addTarget(self,
-                              action: #selector(registerButtonTapped),
-                              for: .touchUpInside)
+                                 action: #selector(registerButtonTapped),
+                                 for: .touchUpInside)
         
         //When User press return - logs in
         emailField.delegate = self
@@ -157,6 +161,7 @@ class RegisterViewController: UIViewController {
                                  y: 20,
                                  width: size,
                                  height: size)
+        imageView.layer.cornerRadius = imageView.width/2.0
         
         emailField.frame = CGRect(x: 30,
                                   y: imageView.bottom + 10,
@@ -164,14 +169,14 @@ class RegisterViewController: UIViewController {
                                   height: 52)
         
         firstNameField.frame = CGRect(x: 30,
-                                  y: emailField.bottom + 10,
-                                  width: scrollView.width-60,
-                                  height: 52)
+                                      y: emailField.bottom + 10,
+                                      width: scrollView.width-60,
+                                      height: 52)
         
         lastNameField.frame = CGRect(x: 30,
-                                  y: firstNameField.bottom + 10,
-                                  width: scrollView.width-60,
-                                  height: 52)
+                                     y: firstNameField.bottom + 10,
+                                     width: scrollView.width-60,
+                                     height: 52)
         
         passwordField.frame = CGRect(x: 30,
                                      y: lastNameField.bottom + 10,
@@ -179,15 +184,18 @@ class RegisterViewController: UIViewController {
                                      height: 52)
         
         registerButton.frame = CGRect(x: 30,
-                                   y: passwordField.bottom + 10,
-                                   width: scrollView.width-60,
-                                   height: 52)
+                                      y: passwordField.bottom + 10,
+                                      width: scrollView.width-60,
+                                      height: 52)
     }
     
     //MARK:-Methods
     
     @objc private func didTapChangeProfilePicture(){
-    print("Change profile picture")
+        print("Change profile picture")
+        //First:Go to info.plist and add permissions
+        //Second: Create extension
+        presentPhotoActionSheet()
     }
     
     @objc private func registerButtonTapped(){
@@ -247,6 +255,53 @@ extension RegisterViewController:UITextFieldDelegate{
             registerButtonTapped()
         }
         return true
+    }
+}
+
+extension RegisterViewController : UIImagePickerControllerDelegate,UINavigationControllerDelegate{
+    //Present action sheet
+    func presentPhotoActionSheet(){
+        let actioSheet = UIAlertController(title: "Profile picture",
+                                           message: "How would you like to select a picture?",
+                                           preferredStyle: .actionSheet)
+        actioSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        actioSheet.addAction(UIAlertAction(title: "Take Photo", style: .default, handler: {[weak self] _ in
+            self?.presentCamera()
+        }))
+        actioSheet.addAction(UIAlertAction(title: "Choose Photo", style: .default, handler: {[weak self] _ in
+            self?.presentGallery()
+        }))
+        
+        present(actioSheet, animated: true)
+    }
+    
+    func presentCamera(){
+        let vc = UIImagePickerController()
+        vc.sourceType = .camera
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true, completion: nil)
+    }
+    
+    func presentGallery(){
+        let vc = UIImagePickerController()
+        vc.sourceType = .photoLibrary
+        vc.delegate = self
+        vc.allowsEditing = true
+        present(vc, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        picker.dismiss(animated: true, completion: nil)
+        guard let selectedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage else {
+            return
+        }
+        self.imageView.image = selectedImage
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
     }
 }
 
