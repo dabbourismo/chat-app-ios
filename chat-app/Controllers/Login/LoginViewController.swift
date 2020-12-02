@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -139,8 +140,20 @@ class LoginViewController: UIViewController {
             return
         }
         //TODO:Firebase login
+        loginFirebaseUser(email: email, password: password)
     }
     
+    func loginFirebaseUser(email:String,password:String){
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
+            guard let result = authResult,error == nil else{
+                print(error!)
+                print(authResult!)
+                return
+            }
+            let user = result.user
+            print(user)
+        }
+    }
     
     func alertUserLoginError(){
         let alert = UIAlertController(title: "Woops..", message: "Please enter all fields!", preferredStyle: .alert)
